@@ -1,0 +1,12 @@
+.imageContainer { 
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+.sendInputContainer {
+    display: flex;
+    flex-direction: row;
+    width: 305px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
