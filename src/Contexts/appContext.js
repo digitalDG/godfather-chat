@@ -3,7 +3,7 @@ import { createContext, useState, useContext } from 'react';
 const AppContext = createContext();
 
 const AppContextProvider = ({children}) => {
-    const [currentUserData, setCurrentUserData] = useState(null);
+    const [currentUserData, setCurrentUserData] = useState({});
 
     return (
         <AppContext.Provider value={{currentUserData, setCurrentUserData}} >

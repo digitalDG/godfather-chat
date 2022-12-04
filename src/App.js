@@ -41,7 +41,7 @@ const App = () => {
 
         <UserList users={users} />
         <br />
-        {currentUserData !== null ?
+        {Object.keys(currentUserData).length ?
           <>
             <MessageList />
 
