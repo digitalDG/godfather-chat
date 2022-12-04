@@ -1,20 +1,23 @@
 import ForumIcon from '@mui/icons-material/Forum';
 import './messageList.css';
+import { useAppContext } from '../../Contexts/appContext';
 
-const MessageList = ({ user }) => {
-    console.log(user);
+const MessageList = () => {
+
+    const { currentUserData } = useAppContext();
+
     return (
         <>
-            {user &&
+            {currentUserData &&
                 <>
-                    {user.name}
+                    {currentUserData.name}
                     <br />
 
-                    {user.messages && user.messages.length ?
+                    {currentUserData.messages && currentUserData.messages.length ?
 
                         <div id="messageList">
                             <ul>
-                                {user.messages.map((message, index) => {
+                                {currentUserData.messages.map((message, index) => {
                                     return (
                                         <li key={index}>{message}</li>
                                     );

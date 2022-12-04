@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import UserList from './Components/UserList/userList';
 import MessageList from './Components/MessageList/messageList';
 import SendMessageInput from './Components/SendMessageInput/sendMessageInput';
+import { useAppContext } from './Contexts/appContext';
 
 const fetchUsers = async () => {
   return [
@@ -16,15 +17,14 @@ const fetchUsers = async () => {
 
 const App = () => {
   const [users, setUsers] = useState([]);
-  const [currentUser, setCurrentUser] = useState(null);
-  const [messages, setMessages] = useState([]);
+  const { currentUserData } = useAppContext();
 
   useEffect(() => {
     // declare the async data fetching function
     const fetchData = async () => {
       // get the data from the api
       const data = await fetchUsers();
-     
+
       // set state with the result
       setUsers(data);
     }
@@ -35,23 +35,20 @@ const App = () => {
       .catch(console.error);;
   }, [])
 
-  const setMessage = (message) => {
-    currentUser.messages.push(message);
-    setMessages(currentUser.messages);
-  };
 
   return (
-    <div style={{margin: '20px'}}>
-      <UserList users={users} setCurrentUser={setCurrentUser} />
-      <br />
-      {currentUser !== null ?  
-        <>
-          <MessageList user={currentUser} messages={messages} />
+    <div style={{ margin: '20px' }}>
 
-          <SendMessageInput setUserMessage={setMessage}/>
-        </>
-        : null
-      }
+        <UserList users={users} />
+        <br />
+        {currentUserData !== null ?
+          <>
+            <MessageList />
+
+            <SendMessageInput />
+          </>
+          : null
+        }
     </div>
   );
 }
